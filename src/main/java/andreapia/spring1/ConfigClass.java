@@ -18,43 +18,43 @@ public class ConfigClass {
         return new Menu(pizze, toppings, bevande);
     }
 
-    @Bean
+    @Bean (name = "PizzaMargherita")
     public Pizze pizzaMargherita() {
         return new Pizze("Pizza Margherita", 1004, 4.99);
 
     }
 
-    @Bean
+    @Bean (name = "PizzaHawaii")
     public Pizze pizzaHawaii() {
         return new Pizze("Hawaiian Pizza", 1024, 6.49);
     }
 
-    @Bean
+    @Bean (name = "PizzaSalami")
     public Pizze pizzaSalami() {
         return new Pizze("Salami Pizza", 1160, 5.99);
     }
 
-    @Bean
+    @Bean (name = "Cheese")
     public Toppings cheese() {
         return new Toppings("Cheese", 92, 0.69);
     }
 
-    @Bean
+    @Bean (name = "Ham")
     public Toppings ham() {
         return new Toppings("Ham", 35, 0.99);
     }
 
-    @Bean
+    @Bean (name = "Onions")
     public Toppings onions() {
         return new Toppings("Onions", 22, 0.69);
     }
 
-    @Bean
+    @Bean (name = "Pineapple")
     public Toppings pineapple() {
         return new Toppings("Pineapple", 24, 0.79);
     }
 
-    @Bean
+    @Bean (name = "Salami")
     public Toppings salami() {
         return new Toppings("Salami", 86, 0.99);
     }
