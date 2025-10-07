@@ -1,26 +1,31 @@
 package andreapia.spring1.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.List;
 
 
-@AllArgsConstructor
 @Getter
-@Setter
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
 public class Menu {
-    List<Pizze> pizze;
-    List<Toppings> toppings;
-    List<Bevande> bevande;
+    List<Pizza> pizze;
+    List<Topping> toppings;
+    List<Drink> drinks;
 
-    @Override
-    public String toString() {
-        return "Menu{" +
-                "pizze=" + pizze +
-                ", toppings=" + toppings +
-                ", bevande=" + bevande +
-                '}';
+    public void printMenu() {
+        System.out.println("----- EPI MENU-----");
+        System.out.println("Pizze");
+        this.pizze.forEach(System.out::println);
+        System.out.println();
+
+        System.out.println("Toppings");
+        this.toppings.forEach(System.out::println);
+        System.out.println();
+
+        System.out.println("Drinks");
+        this.drinks.forEach(System.out::println);
+        System.out.println();
     }
 }

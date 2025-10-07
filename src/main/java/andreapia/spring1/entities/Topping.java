@@ -4,24 +4,20 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.List;
-
 @AllArgsConstructor
 @Getter
 @Setter
-public class Pizze {
-    private String pizze;
+public class Topping {
+    private String toppings;
     protected long calories;
     protected double price;
 
 
-
     @Override
     public String toString() {
-        return "Pizze{" +
-                "pizze='" + pizze + '\'' +
-                ", calories=" + calories +
-                ", price=" + price +
-                '}';
+        return "Toppings: " +
+                toppings + '\'' +
+                ", calorie: " + calories +
+                ", prezzo: " + price;
     }
 }
