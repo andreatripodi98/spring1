@@ -1,22 +1,24 @@
 package andreapia.spring1.entities;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
-@AllArgsConstructor
 @Getter
 @Setter
-public class Drink {
-    private String bevande;
-    protected long calories;
-    protected double price;
+public class Drink extends Item {
+    private String name;
+
+    public Drink(String name, int calories, double price) {
+        super(calories, price);
+        this.name = name;
+    }
 
     @Override
     public String toString() {
-        return "Bevande: " +
-                bevande + '\'' +
-                ", calorie: " + calories +
-                ", prezzo: " + price;
+        return "Drink{" +
+                "name='" + name + '\'' +
+                ", calories=" + calories +
+                ", price=" + price +
+                '}';
     }
 }

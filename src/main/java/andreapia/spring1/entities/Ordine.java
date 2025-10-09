@@ -1,72 +1,49 @@
 package andreapia.spring1.entities;
 
 import andreapia.spring1.enums.StatoOrdine;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
 
-@Component
+import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
 public class Ordine {
-    @Autowired
+    private int numeroOrdine;
+    private StatoOrdine statoOrdine;
+    private int numCoperti;
+    private LocalTime oraAcquisizione;
+    private List<Item> orderedProducts;
     private Tavolo tavolo;
 
-
-    @Value("${costo.coperto}")
-    private double costoCoperto;
-
-    private StatoOrdine statoOrdine;
-    private double somma;
-
-    public Ordine(Tavolo tavolo, double costoCoperto, StatoOrdine statoOrdine, double somma) {
-        this.tavolo = tavolo;
-        this.costoCoperto = costoCoperto;
-        this.statoOrdine = statoOrdine;
-        this.somma = somma;
-    }
-
-    public double getCostoCoperto() {
-        return costoCoperto;
-    }
-
-    public void setCostoCoperto(double costoCoperto) {
-        this.costoCoperto = costoCoperto;
-    }
-
-    public StatoOrdine getStatoOrdine() {
-        return statoOrdine;
-    }
-
-    public Tavolo getTavolo() {
-        return tavolo;
-    }
-
-    public void setTavolo(Tavolo tavolo) {
+    public Ordine(int numCoperti, Tavolo tavolo) {
+        Random rndm = new Random();
+        if (tavolo.getNumMaxCoperti() <= numCoperti)
+            throw new RuntimeException("Numero coperti maggiore di numero massimo posti sul tavolo!");
+        this.numeroOrdine = rndm.nextInt(1000, 100000);
+        this.statoOrdine = StatoOrdine.IN_CORSO;
+        this.numCoperti = numCoperti;
+        this.oraAcquisizione = LocalTime.now();
+        this.orderedProducts = new ArrayList<>();
         this.tavolo = tavolo;
     }
 
-    public void setStatoOrdine(StatoOrdine statoOrdine) {
-        this.statoOrdine = statoOrdine;
+    public void addItem(Item item) {
+        this.orderedProducts.add(item);
     }
 
-    public double getSomma() {
-        return somma;
+    public double getTotal() {
+        return this.orderedProducts.stream().mapToDouble(Item::getPrice).sum() + (this.tavolo.getCostoCoperto() * this.numCoperti);
     }
 
+    public void print() {
+        System.out.println("id ordine--> " + this.numeroOrdine);
+        System.out.println("stato--> " + this.statoOrdine);
+        System.out.println("numero coperti--> " + this.numCoperti);
+        System.out.println("ora acquisizione--> " + this.oraAcquisizione);
+        System.out.println("numero tavolo--> " + this.tavolo.getNumTavolo());
+        System.out.println("Lista: ");
+        this.orderedProducts.forEach(System.out::println);
+        System.out.println("totale--> " + this.getTotal());
 
-    public void setSomma(double somma) {
-        this.somma = somma;
-    }
-
-
-    public double totale() {
-        return somma + (tavolo.getNumeroCorperti() * costoCoperto);
-    }
-
-    @Override
-    public String toString() {
-        return "Ordine " +
-                "tavolo n: " + tavolo +
-                ", Stato ordine: " + statoOrdine +
-                ", Totale + coperto: " + somma + " + " + costoCoperto;
     }
 }

@@ -1,48 +1,20 @@
 package andreapia.spring1.entities;
 
-import andreapia.spring1.enums.StatoTavoli;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 
-import java.util.List;
-
+@AllArgsConstructor
+@Getter
 public class Tavolo {
-    private long numeroTavolo;
-    private long numeroCoperti;
-    private StatoTavoli statoTavoli;
+    private int numTavolo;
+    private int numMaxCoperti;
+    private boolean isFree;
+    private double costoCoperto;
 
-    public Tavolo(long numeroTavolo, long numeroCoperti, StatoTavoli stato) {
-        this.numeroTavolo = numeroTavolo;
-        this.numeroCoperti = numeroCoperti;
-        this.statoTavoli = statoTavoli;
+    public void print() {
+        System.out.println("numero tavolo--> " + numTavolo);
+        System.out.println("numero massimo coperti--> " + numMaxCoperti);
+        System.out.println("occupato/libero--> " + (this.isFree ? "Libero" : "Occupato"));
     }
 
-    public StatoTavoli getStatoTavoli() {
-        return statoTavoli;
-    }
-
-    public long getNumeroCorperti() {
-        return numeroCoperti;
-    }
-
-    public void setNumeroCorperti(long numeroCoperti) {
-        this.numeroCoperti = numeroCoperti;
-    }
-
-    public long getNumeroTavolo() {
-        return numeroTavolo;
-    }
-
-    public void setNumeroTavolo(long numeroTavolo) {
-        this.numeroTavolo = numeroTavolo;
-    }
-
-    public void setStatoTavoli(StatoTavoli statoTavoli) {
-        this.statoTavoli = statoTavoli;
-    }
-
-    @Override
-    public String toString() {
-        return "Tavolo n: " + numeroTavolo +
-                ", Numero Coperti: " + numeroCoperti +
-                ", stato: " + statoTavoli;
-    }
 }

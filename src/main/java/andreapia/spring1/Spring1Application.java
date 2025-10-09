@@ -15,16 +15,6 @@ public class Spring1Application {
 
         SpringApplication.run(Spring1Application.class, args);
 
-        AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(ConfigClass.class);
-        Menu menu1 = ctx.getBean(Menu.class);
-        System.out.println(menu1);
-        Pizza pizza1 = (Pizza) ctx.getBean("PizzaMargherita");
-        Topping topping = (Topping) ctx.getBean("Ham");
-        System.out.println(pizza1 + " + " + topping);
-        Ordine ordine = ctx.getBean(Ordine.class);
-        System.out.println(ordine);
-
-
     }
 
 }
